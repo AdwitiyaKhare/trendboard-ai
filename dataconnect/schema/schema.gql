@@ -1,0 +1,47 @@
+type User @table {
+  email: String!
+  createdAt: Timestamp!
+  displayName: String
+  photoUrl: String
+}
+
+type NewsSource @table {
+  name: String!
+  url: String!
+  rssFeedUrl: String!
+  description: String
+  logoUrl: String
+}
+
+type Article @table {
+  title: String!
+  url: String!
+  fetchedAt: Timestamp!
+  source: NewsSource!
+  author: String
+  publishedAt: Timestamp
+  imageUrl: String
+  fullContent: String
+  summary: String
+}
+
+type SavedArticle @table {
+  user: User!
+  article: Article!
+  savedAt: Timestamp!
+  notes: String
+  isImportant: Boolean
+}
+
+type Category @table {
+  user: User!
+  name: String!
+  createdAt: Timestamp!
+  description: String
+}
+
+type ArticleCategory @table(key: ["savedArticle", "category"]) {
+  savedArticle: SavedArticle!
+  category: Category!
+  assignedAt: Timestamp!
+}

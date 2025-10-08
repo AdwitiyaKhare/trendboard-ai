@@ -1,0 +1,50 @@
+frontend/node_modules
+functions/node_modules
+frontend/.env
+functions/.env
+
+# -------------------------
+# Node modules
+# -------------------------
+node_modules/
+functions/node_modules/
+frontend/node_modules/
+
+# -------------------------
+# Build / Dist files
+# -------------------------
+dist/
+frontend/dist/
+frontend/build/
+
+# -------------------------
+# Environment files
+# -------------------------
+frontend/.env
+functions/.env
+
+# -------------------------
+# Vite / Frontend
+# -------------------------
+.vite/
+frontend/.vite/
+
+# -------------------------
+# Logs
+# -------------------------
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# -------------------------
+# OS files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Firebase
+# -------------------------
+.firebaserc.local
+firebase-debug
