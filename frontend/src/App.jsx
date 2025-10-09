@@ -8,7 +8,7 @@ export default function App() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        background: "linear-gradient(135deg, #f0f4ff, #d9e8ff, #c1dcff)", // soft blue gradient
+        background: "linear-gradient(135deg, #f0f4ff, #d9e8ff, #c1dcff)",
         backgroundSize: "400% 400%",
         animation: "gradientAnimation 15s ease infinite",
       }}
@@ -17,8 +17,7 @@ export default function App() {
       <main style={{ flex: 1, padding: 16 }}>
         <Dashboard />
       </main>
-
-      {/* Gradient animation keyframes */}
+      
       <style>
         {`
           @keyframes gradientAnimation {

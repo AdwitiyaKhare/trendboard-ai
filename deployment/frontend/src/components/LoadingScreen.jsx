@@ -1,4 +1,3 @@
-// LoadingScreen.jsx
 import { useState, useEffect } from "react";
 import SnakeGame from "./SnakeGame";
 
@@ -46,7 +45,7 @@ export default function LoadingScreen() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[85vh] bg-gray-900 text-white py-8">
-      {/* Server loading header */}
+      
       <h1 className="text-lg mb-4 animate-pulse">
         Waking up server... {formatTime(serverTime)}
       </h1>

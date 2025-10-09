@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 export async function triggerIngest() {
   try {
@@ -14,7 +14,6 @@ export async function triggerIngest() {
   }
 }
 
-// Fetch all summarized articles
 export async function fetchArticles() {
   try {
     const res = await fetch(`${BASE_URL}/articles`);
@@ -26,7 +25,6 @@ export async function fetchArticles() {
   }
 }
 
-// (Optional) Summarize a specific article if you later add that route
 export async function summarizeSingleArticle(articleId) {
   try {
     const res = await fetch(

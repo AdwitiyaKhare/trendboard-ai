@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header
       style={{
-        background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)", // rich modern gradient
+        background: "linear-gradient(135deg, #0f2027, #203a43, #2c5364)",
         color: "#fff",
         padding: "16px 24px",
         boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
@@ -30,12 +30,10 @@ export default function Header() {
           gap: "12px",
         }}
       >
-        {/* Left: Logo / Title */}
         <h1 style={{ margin: 0, fontSize: "1.5rem", fontWeight: "bold" }}>
           TrendBoard
         </h1>
 
-        {/* Right: Links */}
         <div
           style={{
             display: "flex",

@@ -11,17 +11,16 @@ export default function App() {
 
     const checkBackend = async () => {
       try {
-        // Try fetching a small endpoint from backend
         const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/articles`);
         if (!isMounted) return;
 
         if (res.ok) {
-          setBackendReady(true); // backend responded
+          setBackendReady(true); 
         } else {
-          setTimeout(checkBackend, 1000); // retry if not ok
+          setTimeout(checkBackend, 1000);
         }
       } catch (err) {
-        setTimeout(checkBackend, 1000); // retry if fetch failed
+        setTimeout(checkBackend, 1000);
       }
     };
 
@@ -38,7 +37,7 @@ export default function App() {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        background: "linear-gradient(135deg, #f0f4ff, #d9e8ff, #c1dcff)", // soft blue gradient
+        background: "linear-gradient(135deg, #f0f4ff, #d9e8ff, #c1dcff)",
         backgroundSize: "400% 400%",
         animation: "gradientAnimation 15s ease infinite",
       }}
@@ -48,7 +47,6 @@ export default function App() {
         {!backendReady ? <LoadingScreen /> : <Dashboard />}
       </main>
 
-      {/* Gradient animation keyframes */}
       <style>
         {`
           @keyframes gradientAnimation {

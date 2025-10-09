@@ -25,7 +25,6 @@ export default function Dashboard() {
   const [flashMessage, setFlashMessage] = useState(null);
   const [sortOption, setSortOption] = useState("dateDesc");
 
-  // Fetch articles from Firebase
   useEffect(() => {
     const q = query(collection(db, "articles"), orderBy("publishedAt", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -35,7 +34,6 @@ export default function Dashboard() {
     return () => unsubscribe();
   }, []);
 
-  // Filter & sort
   const filtered = articles
     .filter((a) => {
       const term = search.trim().toLowerCase();
@@ -57,20 +55,17 @@ export default function Dashboard() {
       return 0;
     });
 
-  // Prepare chart data
   const tagCounts = {};
   articles.forEach((a) =>
     (a.tags || []).forEach((t) => (tagCounts[t] = (tagCounts[t] || 0) + 1))
   );
   const chartData = Object.keys(tagCounts).map((t) => ({ tag: t, count: tagCounts[t] }));
 
-  // Flash messages
   const showFlash = (message, type = "success") => {
     setFlashMessage({ message, type });
     setTimeout(() => setFlashMessage(null), 5000);
   };
 
-  // Trigger ingest
   async function handleIngest() {
     const fnUrl = import.meta.env.VITE_FUNCTION_URL;
     if (!fnUrl) {
@@ -92,7 +87,6 @@ export default function Dashboard() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
-      {/* Flash Message */}
       <AnimatePresence>
         {flashMessage && (
           <motion.div
@@ -117,7 +111,6 @@ export default function Dashboard() {
         )}
       </AnimatePresence>
 
-      {/* Search & Sort */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
         <input
           value={search}
@@ -153,7 +146,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Trending Topics */}
       {chartData.length > 0 && (
         <div className="bg-white p-6 rounded-lg shadow mb-6 border border-gray-100">
           <h3 className="text-lg font-semibold mb-4">Trending Topics</h3>
@@ -168,7 +160,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Articles */}
       <div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         style={{ gridAutoRows: "1fr" }}

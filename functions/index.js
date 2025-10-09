@@ -18,10 +18,8 @@ if (!HUGGINGFACE_API_TOKEN) {
   );
 }
 
-// ✅ Summarize text using Hugging Face model
 export async function summarizeText(text) {
   try {
-    // Send only the raw article text
     const prompt = `${text}`;
 
     const response = await axios.post(
@@ -42,13 +40,12 @@ export async function summarizeText(text) {
 
     let summary = response.data[0]?.summary_text || "No summary generated.";
 
-    // --- Clean up weird characters & HTML entities ---
     summary = summary
-      .replace(/&nbsp;/gi, " ") // replace non-breaking spaces
-      .replace(/&amp;/gi, "&") // replace &amp;
-      .replace(/Â/g, "") // remove stray Â
-      .replace(/\s+/g, " ") // collapse multiple spaces
-      .replace(/[^\x00-\x7F]+/g, "") // remove non-ASCII weird chars
+      .replace(/&nbsp;/gi, " ")
+      .replace(/&amp;/gi, "&")
+      .replace(/Â/g, "")
+      .replace(/\s+/g, " ")
+      .replace(/[^\x00-\x7F]+/g, "")
       .trim();
 
     return summary;
@@ -58,7 +55,6 @@ export async function summarizeText(text) {
   }
 }
 
-// ✅ HTTP function to fetch and summarize RSS feeds progressively
 export const fetchAndSummarize = functions.https.onRequest(async (req, res) => {
   return cors(req, res, async () => {
     try {
@@ -90,7 +86,6 @@ export const fetchAndSummarize = functions.https.onRequest(async (req, res) => {
         }
       }
 
-      // Remove duplicates
       const unique = new Map();
       allItems.forEach((it) => {
         if (!unique.has(it.link)) unique.set(it.link, it);
@@ -98,7 +93,6 @@ export const fetchAndSummarize = functions.https.onRequest(async (req, res) => {
 
       let ingested = 0;
 
-      // ✅ Process each article sequentially so Firestore updates immediately
       for (const item of unique.values()) {
         const q = await db
           .collection("articles")
@@ -109,7 +103,6 @@ export const fetchAndSummarize = functions.https.onRequest(async (req, res) => {
 
         const summary = await summarizeText(item.content || item.title || "");
 
-        // ✅ Save immediately (no batch delay)
         await db.collection("articles").add({
           title: item.title || "Untitled",
           link: item.link || null,

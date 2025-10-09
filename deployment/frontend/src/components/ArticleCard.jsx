@@ -1,7 +1,6 @@
 import { format } from "date-fns";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
-// Helper to generate very light random color
 function randomVeryLightColor() {
   const r = Math.floor(245 + Math.random() * 10);
   const g = Math.floor(245 + Math.random() * 10);
@@ -13,7 +12,6 @@ export default function ArticleCard({ article }) {
   const gradientStart = randomVeryLightColor();
   const gradientEnd = randomVeryLightColor();
 
-  // Normalize fields (for safety)
   const title = article.title || "Untitled Article";
   const link = article.link || "#";
   const source = article.source || "Unknown Source";
@@ -39,7 +37,7 @@ export default function ArticleCard({ article }) {
         background: `linear-gradient(135deg, ${gradientStart}, ${gradientEnd})`,
       }}
     >
-      {/* Title */}
+
       <a
         href={link}
         target="_blank"
@@ -51,18 +49,15 @@ export default function ArticleCard({ article }) {
         </h2>
       </a>
 
-      {/* Source & Date */}
       <div className="flex justify-between text-gray-500 text-xs mb-4">
         <span>{source}</span>
         <span>{publishedDate}</span>
       </div>
-
-      {/* Summary */}
+      
       <p className="text-gray-700 text-sm leading-relaxed mb-4 flex-1">
         {summary}
       </p>
 
-      {/* Tags */}
       {tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag, idx) => (
@@ -75,8 +70,7 @@ export default function ArticleCard({ article }) {
           ))}
         </div>
       )}
-
-      {/* Read More Button */}
+      
       <div className="mt-auto">
         <a
           href={link}

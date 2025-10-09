@@ -8,7 +8,6 @@ import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 
-// ✅ Middlewares
 app.use(express.json());
 app.use(
   cors({
@@ -19,7 +18,6 @@ app.use(
 
 const parser = new Parser();
 
-// 🧩 Initialize Firebase Admin SDK
 try {
   admin.initializeApp({
     credential: admin.credential.cert({
@@ -28,22 +26,15 @@ try {
       privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
     }),
   });
-  console.log("✅ Firebase Admin initialized successfully");
+  console.log("Firebase Admin initialized successfully");
 } catch (err) {
-  console.error("❌ Failed to initialize Firebase Admin:", err.message);
+  console.error("Failed to initialize Firebase Admin:", err.message);
 }
 
 const db = admin.firestore();
 
-// 🧠 Hugging Face API Token
 const HUGGINGFACE_API_TOKEN = process.env.HUGGINGFACE_API_TOKEN;
-if (!HUGGINGFACE_API_TOKEN) {
-  console.warn(
-    "⚠️ HUGGINGFACE_API_TOKEN not set. Summarization may fail."
-  );
-}
 
-// 🧹 Sanitize text for Firestore
 function sanitizeText(text) {
   if (!text) return "";
   return text
@@ -57,7 +48,6 @@ function sanitizeText(text) {
     .trim();
 }
 
-// 📝 Summarize text using Hugging Face API
 async function summarizeText(text) {
   try {
     const response = await axios.post(
@@ -75,16 +65,29 @@ async function summarizeText(text) {
         timeout: 60000,
       }
     );
-
     let summary = response.data[0]?.summary_text || "No summary generated.";
     return sanitizeText(summary);
   } catch (err) {
-    console.error("❌ Summarization failed:", err.message);
+    console.error("Summarization failed:", err.message);
     return "Summary error.";
   }
 }
 
-// 🔁 POST: Fetch & Summarize RSS Feeds
+async function fetchFeed(url) {
+  try {
+    const response = await axios.get(url, {
+      headers: { "User-Agent": "Mozilla/5.0" },
+      timeout: 15000,
+      responseType: "text",
+    });
+    const feed = await parser.parseString(response.data);
+    return feed;
+  } catch (err) {
+    console.error("Failed to fetch feed:", url, err.message);
+    return null;
+  }
+}
+
 app.post("/fetch-and-summarize", async (req, res) => {
   try {
     const feeds = [
@@ -95,28 +98,24 @@ app.post("/fetch-and-summarize", async (req, res) => {
     const allItems = [];
 
     for (const url of feeds) {
-      try {
-        const feed = await parser.parseURL(url);
-        feed.items.forEach((item) => {
-          allItems.push({
-            source: feed.title || url,
-            title: sanitizeText(item.title),
-            link: item.link,
-            content: sanitizeText(
-              (item.contentSnippet || item.content || item.summary || "").slice(
-                0,
-                3000
-              )
-            ),
-            pubDate: item.pubDate ? new Date(item.pubDate) : new Date(),
-          });
+      const feed = await fetchFeed(url);
+      if (!feed) continue;
+      feed.items.forEach((item) => {
+        allItems.push({
+          source: feed.title || url,
+          title: sanitizeText(item.title),
+          link: item.link,
+          content: sanitizeText(
+            (item.contentSnippet || item.content || item.summary || "").slice(
+              0,
+              3000
+            )
+          ),
+          pubDate: item.pubDate ? new Date(item.pubDate) : new Date(),
         });
-      } catch (err) {
-        console.warn("⚠️ Failed to parse feed:", url, err.message);
-      }
+      });
     }
 
-    // Remove duplicates
     const unique = new Map();
     allItems.forEach((it) => {
       if (!unique.has(it.link)) unique.set(it.link, it);
@@ -140,8 +139,7 @@ app.post("/fetch-and-summarize", async (req, res) => {
           link: item.link || null,
           summary,
           source: item.source,
-          publishedAt:
-            item.pubDate instanceof Date ? item.pubDate : new Date(),
+          publishedAt: item.pubDate instanceof Date ? item.pubDate : new Date(),
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
           tags: [],
           importance: "normal",
@@ -149,18 +147,17 @@ app.post("/fetch-and-summarize", async (req, res) => {
 
         ingested++;
       } catch (err) {
-        console.warn("⚠️ Skipping article due to error:", item.link, err.message);
+        console.warn("Skipping article due to error:", item.link, err.message);
       }
     }
 
     res.json({ success: true, ingested });
   } catch (err) {
-    console.error("❌ Error during RSS summarization:", err);
+    console.error("Error during RSS summarization:", err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// 📄 GET: Fetch all articles
 app.get("/articles", async (req, res) => {
   try {
     const snapshot = await db
@@ -185,24 +182,18 @@ app.get("/articles", async (req, res) => {
               : new Date().toISOString(),
         });
       } catch (err) {
-        console.warn("⚠️ Skipping invalid doc:", doc.id, err.message);
+        console.warn("Skipping invalid doc:", doc.id, err.message);
       }
     });
 
     res.json(articles);
   } catch (err) {
-    console.error("❌ Failed to fetch articles:", err.message);
+    console.error("Failed to fetch articles:", err.message);
     res.status(500).json({ error: "Failed to fetch articles" });
   }
 });
 
-// ❤️ Health Check
-app.get("/", (req, res) =>
-  res.send("✅ Backend is running successfully 🚀")
-);
+app.get("/", (req, res) => res.send("Backend is running..."));
 
-// 🚀 Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -2,18 +2,14 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Articles collection: read by all, write restricted to cloud functions service account
     match /articles/{articleId} {
       allow read: if true;
       allow create, update, delete: if request.auth != null && request.auth.uid == "admin-placeholder"; // replace with tighter rule for your use (or check request.auth.token.admin)
     }
 
-    // Allow only authenticated users to read other private collections
     match /users/{userId} {
       allow read: if request.auth != null;
       allow write: if request.auth != null && request.auth.uid == userId;
     }
-
-    // Add rules for other collections as needed
   }
 }

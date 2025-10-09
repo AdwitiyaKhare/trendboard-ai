@@ -1,4 +1,3 @@
-// small helper to call your cloud function endpoint (if you want to trigger ingestion manually)
 export async function triggerIngest(functionUrl) {
   try {
     const res = await fetch(functionUrl, { method: "POST" });
@@ -11,7 +10,6 @@ export async function triggerIngest(functionUrl) {
   }
 }
 
-// helper to summarize a single article by its Firestore ID
 export async function summarizeSingleArticle(functionUrl, articleId) {
   try {
     const url = `${functionUrl}/summarizeArticle?articleId=${articleId}`;

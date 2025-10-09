@@ -23,11 +23,9 @@ export default function SnakeGame() {
     "1,0": 0,
   };
 
-  // Validate direction to prevent reverse
   const isValidDirection = (newDir) =>
     !(newDir[0] === -dir[0] && newDir[1] === -dir[1]);
 
-  // Keyboard controls
   useEffect(() => {
     const handleKey = (e) => {
       if (gameOver) return;
@@ -55,7 +53,6 @@ export default function SnakeGame() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [dir, gameOver]);
 
-  // Update snake
   useEffect(() => {
     if (gameOver) return;
     const interval = setInterval(() => {
@@ -94,7 +91,6 @@ export default function SnakeGame() {
     return () => clearInterval(interval);
   }, [nextDir, food, gameOver, score, highScore]);
 
-  // Draw canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -149,9 +145,8 @@ export default function SnakeGame() {
     setHeadAngle(-Math.PI / 2);
   };
 
-  // Mobile control buttons
   const handleTouchControl = (newDir) => {
-    if (!isValidDirection(newDir)) return; // prevent reverse
+    if (!isValidDirection(newDir)) return;
     setNextDir(newDir);
     setHeadAngle(directionToAngle[newDir.toString()]);
   };
@@ -188,7 +183,6 @@ export default function SnakeGame() {
             Use arrow keys (desktop) or on-screen buttons (mobile) to move 🐍
           </p>
 
-          {/* Mobile Controls */}
           <div className="flex flex-col items-center sm:hidden">
             <div className="flex">
               <button
