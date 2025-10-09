@@ -1,0 +1,27 @@
+I1009 03:11:38.825204   35412 load.go:31] Reloading schema and connectors...
+I1009 03:11:38.848819   35412 control.go:94] [/emulator/functions 7c11] UpdateResources(): done
+Main schema: sources: schema\schema.gql [799B] 
+Connector "example": sources: 
+E1009 03:11:38.871921   35412 load.go:95] Errors generating SDK: [connector "example"]: invalid Data Connect Connector no query found in connector
+I1009 03:11:38.875756   35412 collector.go:107] schema extensions wrote into "C:\\Users\\USER\\Desktop\\Projects\\trendboard\\dataconnect\\.dataconnect\\schema"
+Generated sources: prelude.gql [73219B] main\query.gql [7673B] main\mutation.gql [20839B] main\implicit.gql [2855B] main\input.gql [50630B] main\relation.gql [24403B] 
+I1009 03:11:38.875756   35412 load.go:109] Finished reloading
+I1009 03:11:38.876276   35412 dev.go:102] Listening on address (HTTP + gRPC): 127.0.0.1:9399
+I1009 03:11:38.876904   35412 dev.go:102] Listening on address (HTTP + gRPC): [::1]:9399
+I1009 03:11:42.741586   35412 migrate.go:24] Running migration SQL:
+Step 1: CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
+Step 2: CREATE TABLE "public"."news_source" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "description" text NULL, "logo_url" text NULL, "name" text NOT NULL, "rss_feed_url" text NOT NULL, "url" text NOT NULL, PRIMARY KEY ("id"))
+Step 3: CREATE TABLE "public"."article" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "source_id" uuid NOT NULL, "author" text NULL, "fetched_at" timestamptz NOT NULL, "full_content" text NULL, "image_url" text NULL, "published_at" timestamptz NULL, "summary" text NULL, "title" text NOT NULL, "url" text NOT NULL, PRIMARY KEY ("id"), CONSTRAINT "article_source_id_fkey" FOREIGN KEY ("source_id") REFERENCES "public"."news_source" ("id") ON DELETE CASCADE)
+Step 4: CREATE INDEX "article_sourceId_idx" ON "public"."article" ("source_id")
+Step 5: CREATE TABLE "public"."user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" timestamptz NOT NULL, "display_name" text NULL, "email" text NOT NULL, "photo_url" text NULL, PRIMARY KEY ("id"))
+Step 6: CREATE TABLE "public"."category" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "user_id" uuid NOT NULL, "created_at" timestamptz NOT NULL, "description" text NULL, "name" text NOT NULL, PRIMARY KEY ("id"), CONSTRAINT "category_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "public"."user" ("id") ON DELETE CASCADE)
+Step 7: CREATE INDEX "category_userId_idx" ON "public"."category" ("user_id")
+Step 8: CREATE TABLE "public"."saved_article" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "article_id" uuid NOT NULL, "user_id" uuid NOT NULL, "is_important" boolean NULL, "notes" text NULL, "saved_at" timestamptz NOT NULL, PRIMARY KEY ("id"), CONSTRAINT "saved_article_article_id_fkey" FOREIGN KEY ("article_id") REFERENCES "public"."article" ("id") ON DELETE CASCADE, CONSTRAINT "saved_article_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "public"."user" ("id") ON DELETE CASCADE)
+Step 9: CREATE INDEX "saved_article_articleId_idx" ON "public"."saved_article" ("article_id")
+Step 10: CREATE INDEX "saved_article_userId_idx" ON "public"."saved_article" ("user_id")
+Step 11: CREATE TABLE "public"."article_category" ("saved_article_id" uuid NOT NULL, "category_id" uuid NOT NULL, "assigned_at" timestamptz NOT NULL, PRIMARY KEY ("saved_article_id", "category_id"), CONSTRAINT "article_category_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "public"."category" ("id") ON DELETE CASCADE, CONSTRAINT "article_category_saved_article_id_fkey" FOREIGN KEY ("saved_article_id") REFERENCES "public"."saved_article" ("id") ON DELETE CASCADE)
+Step 12: CREATE INDEX "article_category_categoryId_idx" ON "public"."article_category" ("category_id")
+Step 13: CREATE INDEX "article_category_savedArticleId_idx" ON "public"."article_category" ("saved_article_id")
+I1009 03:11:42.861381   35412 control.go:94] [/emulator/functions c1c6] UpdateResources(): done
+Main schema: sources: schema\schema.gql [799B] 
+Connector "example": sources: 

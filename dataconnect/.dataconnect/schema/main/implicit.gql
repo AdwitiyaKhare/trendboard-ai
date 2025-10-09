@@ -1,0 +1,56 @@
+extend type Article {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Article", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Article`.`source`. It must match the value of `NewsSource`.`id`. See `@ref` for how to customize it.
+  """
+  sourceId: UUID! @fdc_generated(from: "Article.source", purpose: IMPLICIT_REF_FIELD)
+}
+extend type ArticleCategory {
+  """
+  ✨ Implicit foreign key field based on `ArticleCategory`.`savedArticle`. It must match the value of `SavedArticle`.`id`. See `@ref` for how to customize it.
+  """
+  savedArticleId: UUID! @fdc_generated(from: "ArticleCategory.savedArticle", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `ArticleCategory`.`category`. It must match the value of `Category`.`id`. See `@ref` for how to customize it.
+  """
+  categoryId: UUID! @fdc_generated(from: "ArticleCategory.category", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Category {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Category", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Category`.`user`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  userId: UUID! @fdc_generated(from: "Category.user", purpose: IMPLICIT_REF_FIELD)
+}
+extend type NewsSource {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "NewsSource", purpose: IMPLICIT_KEY_FIELD)
+}
+extend type SavedArticle {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "SavedArticle", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `SavedArticle`.`article`. It must match the value of `Article`.`id`. See `@ref` for how to customize it.
+  """
+  articleId: UUID! @fdc_generated(from: "SavedArticle.article", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `SavedArticle`.`user`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  userId: UUID! @fdc_generated(from: "SavedArticle.user", purpose: IMPLICIT_REF_FIELD)
+}
+extend type User {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "User", purpose: IMPLICIT_KEY_FIELD)
+}

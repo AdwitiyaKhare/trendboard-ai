@@ -1,0 +1,1702 @@
+"""
+✨ `Article_KeyOutput` returns the primary key fields of table type `Article`.
+
+It has the same format as `Article_Key`, but is only used as mutation return value.
+"""
+scalar Article_KeyOutput
+"""
+✨ `ArticleCategory_KeyOutput` returns the primary key fields of table type `ArticleCategory`.
+
+It has the same format as `ArticleCategory_Key`, but is only used as mutation return value.
+"""
+scalar ArticleCategory_KeyOutput
+"""
+✨ `Category_KeyOutput` returns the primary key fields of table type `Category`.
+
+It has the same format as `Category_Key`, but is only used as mutation return value.
+"""
+scalar Category_KeyOutput
+"""
+✨ `NewsSource_KeyOutput` returns the primary key fields of table type `NewsSource`.
+
+It has the same format as `NewsSource_Key`, but is only used as mutation return value.
+"""
+scalar NewsSource_KeyOutput
+"""
+✨ `SavedArticle_KeyOutput` returns the primary key fields of table type `SavedArticle`.
+
+It has the same format as `SavedArticle_Key`, but is only used as mutation return value.
+"""
+scalar SavedArticle_KeyOutput
+"""
+✨ `User_KeyOutput` returns the primary key fields of table type `User`.
+
+It has the same format as `User_Key`, but is only used as mutation return value.
+"""
+scalar User_KeyOutput
+"""
+✨ Generated data input type for table 'Article'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Article_Data {
+  """
+  ✨ Generated from Field `Article`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Article`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Article`.`sourceId` of type `UUID!`
+  """
+  sourceId: UUID
+  """
+  ✨ `_expr` server value variant of `sourceId` (✨ Generated from Field `Article`.`sourceId` of type `UUID!`)
+  """
+  sourceId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Article`.`source` of type `NewsSource!`
+  """
+  source: NewsSource_Key
+  """
+  ✨ Generated from Field `Article`.`author` of type `String`
+  """
+  author: String
+  """
+  ✨ `_expr` server value variant of `author` (✨ Generated from Field `Article`.`author` of type `String`)
+  """
+  author_expr: String_Expr
+  """
+  ✨ Generated from Field `Article`.`fetchedAt` of type `Timestamp!`
+  """
+  fetchedAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `fetchedAt` (✨ Generated from Field `Article`.`fetchedAt` of type `Timestamp!`)
+  """
+  fetchedAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `fetchedAt` (✨ Generated from Field `Article`.`fetchedAt` of type `Timestamp!`)
+  """
+  fetchedAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `fetchedAt` (✨ Generated from Field `Article`.`fetchedAt` of type `Timestamp!`)
+  """
+  fetchedAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Article`.`fullContent` of type `String`
+  """
+  fullContent: String
+  """
+  ✨ `_expr` server value variant of `fullContent` (✨ Generated from Field `Article`.`fullContent` of type `String`)
+  """
+  fullContent_expr: String_Expr
+  """
+  ✨ Generated from Field `Article`.`imageUrl` of type `String`
+  """
+  imageUrl: String
+  """
+  ✨ `_expr` server value variant of `imageUrl` (✨ Generated from Field `Article`.`imageUrl` of type `String`)
+  """
+  imageUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `Article`.`publishedAt` of type `Timestamp`
+  """
+  publishedAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `publishedAt` (✨ Generated from Field `Article`.`publishedAt` of type `Timestamp`)
+  """
+  publishedAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `publishedAt` (✨ Generated from Field `Article`.`publishedAt` of type `Timestamp`)
+  """
+  publishedAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `publishedAt` (✨ Generated from Field `Article`.`publishedAt` of type `Timestamp`)
+  """
+  publishedAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Article`.`summary` of type `String`
+  """
+  summary: String
+  """
+  ✨ `_expr` server value variant of `summary` (✨ Generated from Field `Article`.`summary` of type `String`)
+  """
+  summary_expr: String_Expr
+  """
+  ✨ Generated from Field `Article`.`title` of type `String!`
+  """
+  title: String
+  """
+  ✨ `_expr` server value variant of `title` (✨ Generated from Field `Article`.`title` of type `String!`)
+  """
+  title_expr: String_Expr
+  """
+  ✨ Generated from Field `Article`.`url` of type `String!`
+  """
+  url: String
+  """
+  ✨ `_expr` server value variant of `url` (✨ Generated from Field `Article`.`url` of type `String!`)
+  """
+  url_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Article'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Article_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Article_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Article_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Article_Filter!]
+  """
+  ✨ Generated from Field `Article`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Article`.`sourceId` of type `UUID!`
+  """
+  sourceId: UUID_Filter
+  """
+  ✨ Generated from Field `Article`.`source` of type `NewsSource!`
+  """
+  source: NewsSource_Filter
+  """
+  ✨ Generated from Field `Article`.`author` of type `String`
+  """
+  author: String_Filter
+  """
+  ✨ Generated from Field `Article`.`fetchedAt` of type `Timestamp!`
+  """
+  fetchedAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Article`.`fullContent` of type `String`
+  """
+  fullContent: String_Filter
+  """
+  ✨ Generated from Field `Article`.`imageUrl` of type `String`
+  """
+  imageUrl: String_Filter
+  """
+  ✨ Generated from Field `Article`.`publishedAt` of type `Timestamp`
+  """
+  publishedAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Article`.`summary` of type `String`
+  """
+  summary: String_Filter
+  """
+  ✨ Generated from Field `Article`.`title` of type `String!`
+  """
+  title: String_Filter
+  """
+  ✨ Generated from Field `Article`.`url` of type `String!`
+  """
+  url: String_Filter
+  """
+  ✨ Generated from Field `Article`.`savedArticles_on_article` of type `[SavedArticle!]!`
+  """
+  savedArticles_on_article: SavedArticle_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Article'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Article_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Article_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Article_Filter
+}
+"""
+✨ Generated having input type for table 'Article'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Article_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Article_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Article_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Article_Having!]
+  """
+  ✨ Generated from Field `Article`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`author_count` of type `Int!`
+  """
+  author_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`fetchedAt_count` of type `Int!`
+  """
+  fetchedAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`fullContent_count` of type `Int!`
+  """
+  fullContent_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`imageUrl_count` of type `Int!`
+  """
+  imageUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`publishedAt_count` of type `Int!`
+  """
+  publishedAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`sourceId_count` of type `Int!`
+  """
+  sourceId_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`summary_count` of type `Int!`
+  """
+  summary_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`title_count` of type `Int!`
+  """
+  title_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`url_count` of type `Int!`
+  """
+  url_count: Int_Filter
+  """
+  ✨ Generated from Field `Article`.`fetchedAt_min` of type `Timestamp`
+  """
+  fetchedAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Article`.`publishedAt_min` of type `Timestamp`
+  """
+  publishedAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Article`.`fetchedAt_max` of type `Timestamp`
+  """
+  fetchedAt_max: Timestamp_Filter
+  """
+  ✨ Generated from Field `Article`.`publishedAt_max` of type `Timestamp`
+  """
+  publishedAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'Article'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Article_Key {
+  """
+  ✨ Generated from Field `Article`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Article`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Article'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Article_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Article_Filter
+}
+"""
+✨ Generated order input type for table 'Article'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Article_Order {
+  """
+  ✨ Generated from Field `Article`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`sourceId` of type `UUID!`
+  """
+  sourceId: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`source` of type `NewsSource!`
+  """
+  source: NewsSource_Order
+  """
+  ✨ Generated from Field `Article`.`author` of type `String`
+  """
+  author: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`fetchedAt` of type `Timestamp!`
+  """
+  fetchedAt: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`fullContent` of type `String`
+  """
+  fullContent: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`imageUrl` of type `String`
+  """
+  imageUrl: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`publishedAt` of type `Timestamp`
+  """
+  publishedAt: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`summary` of type `String`
+  """
+  summary: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`title` of type `String!`
+  """
+  title: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`url` of type `String!`
+  """
+  url: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`author_count` of type `Int!`
+  """
+  author_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`fetchedAt_count` of type `Int!`
+  """
+  fetchedAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`fullContent_count` of type `Int!`
+  """
+  fullContent_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`imageUrl_count` of type `Int!`
+  """
+  imageUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`publishedAt_count` of type `Int!`
+  """
+  publishedAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`sourceId_count` of type `Int!`
+  """
+  sourceId_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`summary_count` of type `Int!`
+  """
+  summary_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`title_count` of type `Int!`
+  """
+  title_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`url_count` of type `Int!`
+  """
+  url_count: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`fetchedAt_min` of type `Timestamp`
+  """
+  fetchedAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`publishedAt_min` of type `Timestamp`
+  """
+  publishedAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`fetchedAt_max` of type `Timestamp`
+  """
+  fetchedAt_max: OrderDirection
+  """
+  ✨ Generated from Field `Article`.`publishedAt_max` of type `Timestamp`
+  """
+  publishedAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'ArticleCategory'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input ArticleCategory_Data {
+  """
+  ✨ Generated from Field `ArticleCategory`.`savedArticleId` of type `UUID!`
+  """
+  savedArticleId: UUID
+  """
+  ✨ `_expr` server value variant of `savedArticleId` (✨ Generated from Field `ArticleCategory`.`savedArticleId` of type `UUID!`)
+  """
+  savedArticleId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `ArticleCategory`.`categoryId` of type `UUID!`
+  """
+  categoryId: UUID
+  """
+  ✨ `_expr` server value variant of `categoryId` (✨ Generated from Field `ArticleCategory`.`categoryId` of type `UUID!`)
+  """
+  categoryId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `ArticleCategory`.`category` of type `Category!`
+  """
+  category: Category_Key
+  """
+  ✨ Generated from Field `ArticleCategory`.`savedArticle` of type `SavedArticle!`
+  """
+  savedArticle: SavedArticle_Key
+  """
+  ✨ Generated from Field `ArticleCategory`.`assignedAt` of type `Timestamp!`
+  """
+  assignedAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `assignedAt` (✨ Generated from Field `ArticleCategory`.`assignedAt` of type `Timestamp!`)
+  """
+  assignedAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `assignedAt` (✨ Generated from Field `ArticleCategory`.`assignedAt` of type `Timestamp!`)
+  """
+  assignedAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `assignedAt` (✨ Generated from Field `ArticleCategory`.`assignedAt` of type `Timestamp!`)
+  """
+  assignedAt_update: [Timestamp_Update!]
+}
+"""
+✨ Generated filter input type for table 'ArticleCategory'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input ArticleCategory_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [ArticleCategory_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: ArticleCategory_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [ArticleCategory_Filter!]
+  """
+  ✨ Generated from Field `ArticleCategory`.`savedArticleId` of type `UUID!`
+  """
+  savedArticleId: UUID_Filter
+  """
+  ✨ Generated from Field `ArticleCategory`.`categoryId` of type `UUID!`
+  """
+  categoryId: UUID_Filter
+  """
+  ✨ Generated from Field `ArticleCategory`.`category` of type `Category!`
+  """
+  category: Category_Filter
+  """
+  ✨ Generated from Field `ArticleCategory`.`savedArticle` of type `SavedArticle!`
+  """
+  savedArticle: SavedArticle_Filter
+  """
+  ✨ Generated from Field `ArticleCategory`.`assignedAt` of type `Timestamp!`
+  """
+  assignedAt: Timestamp_Filter
+}
+"""
+✨ Generated first-row input type for table 'ArticleCategory'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input ArticleCategory_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [ArticleCategory_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: ArticleCategory_Filter
+}
+"""
+✨ Generated having input type for table 'ArticleCategory'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input ArticleCategory_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [ArticleCategory_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: ArticleCategory_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [ArticleCategory_Having!]
+  """
+  ✨ Generated from Field `ArticleCategory`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `ArticleCategory`.`assignedAt_count` of type `Int!`
+  """
+  assignedAt_count: Int_Filter
+  """
+  ✨ Generated from Field `ArticleCategory`.`categoryId_count` of type `Int!`
+  """
+  categoryId_count: Int_Filter
+  """
+  ✨ Generated from Field `ArticleCategory`.`savedArticleId_count` of type `Int!`
+  """
+  savedArticleId_count: Int_Filter
+  """
+  ✨ Generated from Field `ArticleCategory`.`assignedAt_min` of type `Timestamp`
+  """
+  assignedAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `ArticleCategory`.`assignedAt_max` of type `Timestamp`
+  """
+  assignedAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'ArticleCategory'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input ArticleCategory_Key {
+  """
+  ✨ Generated from Field `ArticleCategory`.`savedArticleId` of type `UUID!`
+  """
+  savedArticleId: UUID
+  """
+  ✨ `_expr` server value variant of `savedArticleId` (✨ Generated from Field `ArticleCategory`.`savedArticleId` of type `UUID!`)
+  """
+  savedArticleId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `ArticleCategory`.`categoryId` of type `UUID!`
+  """
+  categoryId: UUID
+  """
+  ✨ `_expr` server value variant of `categoryId` (✨ Generated from Field `ArticleCategory`.`categoryId` of type `UUID!`)
+  """
+  categoryId_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'ArticleCategory'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input ArticleCategory_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: ArticleCategory_Filter
+}
+"""
+✨ Generated order input type for table 'ArticleCategory'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input ArticleCategory_Order {
+  """
+  ✨ Generated from Field `ArticleCategory`.`savedArticleId` of type `UUID!`
+  """
+  savedArticleId: OrderDirection
+  """
+  ✨ Generated from Field `ArticleCategory`.`categoryId` of type `UUID!`
+  """
+  categoryId: OrderDirection
+  """
+  ✨ Generated from Field `ArticleCategory`.`category` of type `Category!`
+  """
+  category: Category_Order
+  """
+  ✨ Generated from Field `ArticleCategory`.`savedArticle` of type `SavedArticle!`
+  """
+  savedArticle: SavedArticle_Order
+  """
+  ✨ Generated from Field `ArticleCategory`.`assignedAt` of type `Timestamp!`
+  """
+  assignedAt: OrderDirection
+  """
+  ✨ Generated from Field `ArticleCategory`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `ArticleCategory`.`assignedAt_count` of type `Int!`
+  """
+  assignedAt_count: OrderDirection
+  """
+  ✨ Generated from Field `ArticleCategory`.`categoryId_count` of type `Int!`
+  """
+  categoryId_count: OrderDirection
+  """
+  ✨ Generated from Field `ArticleCategory`.`savedArticleId_count` of type `Int!`
+  """
+  savedArticleId_count: OrderDirection
+  """
+  ✨ Generated from Field `ArticleCategory`.`assignedAt_min` of type `Timestamp`
+  """
+  assignedAt_min: OrderDirection
+  """
+  ✨ Generated from Field `ArticleCategory`.`assignedAt_max` of type `Timestamp`
+  """
+  assignedAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Category'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Category_Data {
+  """
+  ✨ Generated from Field `Category`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Category`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Category`.`userId` of type `UUID!`
+  """
+  userId: UUID
+  """
+  ✨ `_expr` server value variant of `userId` (✨ Generated from Field `Category`.`userId` of type `UUID!`)
+  """
+  userId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `Category`.`user` of type `User!`
+  """
+  user: User_Key
+  """
+  ✨ Generated from Field `Category`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `Category`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `Category`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `Category`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `Category`.`description` of type `String`
+  """
+  description: String
+  """
+  ✨ `_expr` server value variant of `description` (✨ Generated from Field `Category`.`description` of type `String`)
+  """
+  description_expr: String_Expr
+  """
+  ✨ Generated from Field `Category`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `Category`.`name` of type `String!`)
+  """
+  name_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'Category'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Category_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Category_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Category_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Category_Filter!]
+  """
+  ✨ Generated from Field `Category`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Category`.`userId` of type `UUID!`
+  """
+  userId: UUID_Filter
+  """
+  ✨ Generated from Field `Category`.`user` of type `User!`
+  """
+  user: User_Filter
+  """
+  ✨ Generated from Field `Category`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Category`.`description` of type `String`
+  """
+  description: String_Filter
+  """
+  ✨ Generated from Field `Category`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `Category`.`articleCategories_on_category` of type `[ArticleCategory!]!`
+  """
+  articleCategories_on_category: ArticleCategory_ListFilter
+  """
+  ✨ Generated from Field `Category`.`savedArticles_via_ArticleCategory` of type `[SavedArticle!]!`
+  """
+  savedArticles_via_ArticleCategory: SavedArticle_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Category'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Category_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Category_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Category_Filter
+}
+"""
+✨ Generated having input type for table 'Category'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Category_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Category_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Category_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Category_Having!]
+  """
+  ✨ Generated from Field `Category`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Category`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Category`.`description_count` of type `Int!`
+  """
+  description_count: Int_Filter
+  """
+  ✨ Generated from Field `Category`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Category`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+  """
+  ✨ Generated from Field `Category`.`userId_count` of type `Int!`
+  """
+  userId_count: Int_Filter
+  """
+  ✨ Generated from Field `Category`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Category`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'Category'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Category_Key {
+  """
+  ✨ Generated from Field `Category`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Category`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'Category'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Category_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Category_Filter
+}
+"""
+✨ Generated order input type for table 'Category'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Category_Order {
+  """
+  ✨ Generated from Field `Category`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`userId` of type `UUID!`
+  """
+  userId: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`user` of type `User!`
+  """
+  user: User_Order
+  """
+  ✨ Generated from Field `Category`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`description` of type `String`
+  """
+  description: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`description_count` of type `Int!`
+  """
+  description_count: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`userId_count` of type `Int!`
+  """
+  userId_count: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Category`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'NewsSource'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input NewsSource_Data {
+  """
+  ✨ Generated from Field `NewsSource`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `NewsSource`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `NewsSource`.`description` of type `String`
+  """
+  description: String
+  """
+  ✨ `_expr` server value variant of `description` (✨ Generated from Field `NewsSource`.`description` of type `String`)
+  """
+  description_expr: String_Expr
+  """
+  ✨ Generated from Field `NewsSource`.`logoUrl` of type `String`
+  """
+  logoUrl: String
+  """
+  ✨ `_expr` server value variant of `logoUrl` (✨ Generated from Field `NewsSource`.`logoUrl` of type `String`)
+  """
+  logoUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `NewsSource`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `NewsSource`.`name` of type `String!`)
+  """
+  name_expr: String_Expr
+  """
+  ✨ Generated from Field `NewsSource`.`rssFeedUrl` of type `String!`
+  """
+  rssFeedUrl: String
+  """
+  ✨ `_expr` server value variant of `rssFeedUrl` (✨ Generated from Field `NewsSource`.`rssFeedUrl` of type `String!`)
+  """
+  rssFeedUrl_expr: String_Expr
+  """
+  ✨ Generated from Field `NewsSource`.`url` of type `String!`
+  """
+  url: String
+  """
+  ✨ `_expr` server value variant of `url` (✨ Generated from Field `NewsSource`.`url` of type `String!`)
+  """
+  url_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'NewsSource'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input NewsSource_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [NewsSource_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: NewsSource_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [NewsSource_Filter!]
+  """
+  ✨ Generated from Field `NewsSource`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`description` of type `String`
+  """
+  description: String_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`logoUrl` of type `String`
+  """
+  logoUrl: String_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`rssFeedUrl` of type `String!`
+  """
+  rssFeedUrl: String_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`url` of type `String!`
+  """
+  url: String_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`articles_on_source` of type `[Article!]!`
+  """
+  articles_on_source: Article_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'NewsSource'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input NewsSource_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [NewsSource_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: NewsSource_Filter
+}
+"""
+✨ Generated having input type for table 'NewsSource'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input NewsSource_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [NewsSource_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: NewsSource_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [NewsSource_Having!]
+  """
+  ✨ Generated from Field `NewsSource`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`description_count` of type `Int!`
+  """
+  description_count: Int_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`logoUrl_count` of type `Int!`
+  """
+  logoUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`rssFeedUrl_count` of type `Int!`
+  """
+  rssFeedUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `NewsSource`.`url_count` of type `Int!`
+  """
+  url_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'NewsSource'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input NewsSource_Key {
+  """
+  ✨ Generated from Field `NewsSource`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `NewsSource`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'NewsSource'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input NewsSource_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: NewsSource_Filter
+}
+"""
+✨ Generated order input type for table 'NewsSource'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input NewsSource_Order {
+  """
+  ✨ Generated from Field `NewsSource`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`description` of type `String`
+  """
+  description: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`logoUrl` of type `String`
+  """
+  logoUrl: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`rssFeedUrl` of type `String!`
+  """
+  rssFeedUrl: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`url` of type `String!`
+  """
+  url: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`description_count` of type `Int!`
+  """
+  description_count: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`logoUrl_count` of type `Int!`
+  """
+  logoUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`rssFeedUrl_count` of type `Int!`
+  """
+  rssFeedUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `NewsSource`.`url_count` of type `Int!`
+  """
+  url_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'SavedArticle'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input SavedArticle_Data {
+  """
+  ✨ Generated from Field `SavedArticle`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `SavedArticle`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `SavedArticle`.`articleId` of type `UUID!`
+  """
+  articleId: UUID
+  """
+  ✨ `_expr` server value variant of `articleId` (✨ Generated from Field `SavedArticle`.`articleId` of type `UUID!`)
+  """
+  articleId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `SavedArticle`.`userId` of type `UUID!`
+  """
+  userId: UUID
+  """
+  ✨ `_expr` server value variant of `userId` (✨ Generated from Field `SavedArticle`.`userId` of type `UUID!`)
+  """
+  userId_expr: UUID_Expr
+  """
+  ✨ Generated from Field `SavedArticle`.`article` of type `Article!`
+  """
+  article: Article_Key
+  """
+  ✨ Generated from Field `SavedArticle`.`user` of type `User!`
+  """
+  user: User_Key
+  """
+  ✨ Generated from Field `SavedArticle`.`isImportant` of type `Boolean`
+  """
+  isImportant: Boolean
+  """
+  ✨ `_expr` server value variant of `isImportant` (✨ Generated from Field `SavedArticle`.`isImportant` of type `Boolean`)
+  """
+  isImportant_expr: Boolean_Expr
+  """
+  ✨ Generated from Field `SavedArticle`.`notes` of type `String`
+  """
+  notes: String
+  """
+  ✨ `_expr` server value variant of `notes` (✨ Generated from Field `SavedArticle`.`notes` of type `String`)
+  """
+  notes_expr: String_Expr
+  """
+  ✨ Generated from Field `SavedArticle`.`savedAt` of type `Timestamp!`
+  """
+  savedAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `savedAt` (✨ Generated from Field `SavedArticle`.`savedAt` of type `Timestamp!`)
+  """
+  savedAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `savedAt` (✨ Generated from Field `SavedArticle`.`savedAt` of type `Timestamp!`)
+  """
+  savedAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `savedAt` (✨ Generated from Field `SavedArticle`.`savedAt` of type `Timestamp!`)
+  """
+  savedAt_update: [Timestamp_Update!]
+}
+"""
+✨ Generated filter input type for table 'SavedArticle'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input SavedArticle_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [SavedArticle_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: SavedArticle_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [SavedArticle_Filter!]
+  """
+  ✨ Generated from Field `SavedArticle`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`articleId` of type `UUID!`
+  """
+  articleId: UUID_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`userId` of type `UUID!`
+  """
+  userId: UUID_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`article` of type `Article!`
+  """
+  article: Article_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`user` of type `User!`
+  """
+  user: User_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`isImportant` of type `Boolean`
+  """
+  isImportant: Boolean_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`notes` of type `String`
+  """
+  notes: String_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`savedAt` of type `Timestamp!`
+  """
+  savedAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`articleCategories_on_savedArticle` of type `[ArticleCategory!]!`
+  """
+  articleCategories_on_savedArticle: ArticleCategory_ListFilter
+  """
+  ✨ Generated from Field `SavedArticle`.`categories_via_ArticleCategory` of type `[Category!]!`
+  """
+  categories_via_ArticleCategory: Category_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'SavedArticle'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input SavedArticle_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [SavedArticle_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: SavedArticle_Filter
+}
+"""
+✨ Generated having input type for table 'SavedArticle'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input SavedArticle_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [SavedArticle_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: SavedArticle_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [SavedArticle_Having!]
+  """
+  ✨ Generated from Field `SavedArticle`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`articleId_count` of type `Int!`
+  """
+  articleId_count: Int_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`isImportant_count` of type `Int!`
+  """
+  isImportant_count: Int_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`notes_count` of type `Int!`
+  """
+  notes_count: Int_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`savedAt_count` of type `Int!`
+  """
+  savedAt_count: Int_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`userId_count` of type `Int!`
+  """
+  userId_count: Int_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`savedAt_min` of type `Timestamp`
+  """
+  savedAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `SavedArticle`.`savedAt_max` of type `Timestamp`
+  """
+  savedAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'SavedArticle'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input SavedArticle_Key {
+  """
+  ✨ Generated from Field `SavedArticle`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `SavedArticle`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'SavedArticle'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input SavedArticle_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: SavedArticle_Filter
+}
+"""
+✨ Generated order input type for table 'SavedArticle'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input SavedArticle_Order {
+  """
+  ✨ Generated from Field `SavedArticle`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`articleId` of type `UUID!`
+  """
+  articleId: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`userId` of type `UUID!`
+  """
+  userId: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`article` of type `Article!`
+  """
+  article: Article_Order
+  """
+  ✨ Generated from Field `SavedArticle`.`user` of type `User!`
+  """
+  user: User_Order
+  """
+  ✨ Generated from Field `SavedArticle`.`isImportant` of type `Boolean`
+  """
+  isImportant: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`notes` of type `String`
+  """
+  notes: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`savedAt` of type `Timestamp!`
+  """
+  savedAt: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`articleId_count` of type `Int!`
+  """
+  articleId_count: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`isImportant_count` of type `Int!`
+  """
+  isImportant_count: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`notes_count` of type `Int!`
+  """
+  notes_count: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`savedAt_count` of type `Int!`
+  """
+  savedAt_count: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`userId_count` of type `Int!`
+  """
+  userId_count: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`savedAt_min` of type `Timestamp`
+  """
+  savedAt_min: OrderDirection
+  """
+  ✨ Generated from Field `SavedArticle`.`savedAt_max` of type `Timestamp`
+  """
+  savedAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'User'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input User_Data {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `User`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!]
+  """
+  ✨ Generated from Field `User`.`displayName` of type `String`
+  """
+  displayName: String
+  """
+  ✨ `_expr` server value variant of `displayName` (✨ Generated from Field `User`.`displayName` of type `String`)
+  """
+  displayName_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: String
+  """
+  ✨ `_expr` server value variant of `email` (✨ Generated from Field `User`.`email` of type `String!`)
+  """
+  email_expr: String_Expr
+  """
+  ✨ Generated from Field `User`.`photoUrl` of type `String`
+  """
+  photoUrl: String
+  """
+  ✨ `_expr` server value variant of `photoUrl` (✨ Generated from Field `User`.`photoUrl` of type `String`)
+  """
+  photoUrl_expr: String_Expr
+}
+"""
+✨ Generated filter input type for table 'User'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [User_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: User_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [User_Filter!]
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`displayName` of type `String`
+  """
+  displayName: String_Filter
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: String_Filter
+  """
+  ✨ Generated from Field `User`.`photoUrl` of type `String`
+  """
+  photoUrl: String_Filter
+  """
+  ✨ Generated from Field `User`.`categories_on_user` of type `[Category!]!`
+  """
+  categories_on_user: Category_ListFilter
+  """
+  ✨ Generated from Field `User`.`savedArticles_on_user` of type `[SavedArticle!]!`
+  """
+  savedArticles_on_user: SavedArticle_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'User'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input User_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [User_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: User_Filter
+}
+"""
+✨ Generated having input type for table 'User'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [User_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: User_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [User_Having!]
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`displayName_count` of type `Int!`
+  """
+  displayName_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`photoUrl_count` of type `Int!`
+  """
+  photoUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `User`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'User'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input User_Key {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr
+}
+"""
+✨ Generated list filter input type for table 'User'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input User_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: User_Filter
+}
+"""
+✨ Generated order input type for table 'User'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input User_Order {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `User`.`displayName` of type `String`
+  """
+  displayName: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: OrderDirection
+  """
+  ✨ Generated from Field `User`.`photoUrl` of type `String`
+  """
+  photoUrl: OrderDirection
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`displayName_count` of type `Int!`
+  """
+  displayName_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`photoUrl_count` of type `Int!`
+  """
+  photoUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `User`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+}

@@ -1,51 +1,70 @@
-const functions = require("firebase-functions");
-const admin = require("firebase-admin");
-const Parser = require("rss-parser");
-const fetch = require("node-fetch");
-const cors = require("cors")({ origin: true });
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+import functions from "firebase-functions";
+import admin from "firebase-admin";
+import Parser from "rss-parser";
+import corsPkg from "cors";
+import axios from "axios";
+import dotenv from "dotenv";
 
+dotenv.config();
+const cors = corsPkg({ origin: true });
 admin.initializeApp();
 const db = admin.firestore();
 const parser = new Parser();
 
-require('dotenv').config();
-
-const geminiKey = process.env.GEMINI_API_KEY;
-if (!geminiKey) {
+const HUGGINGFACE_API_TOKEN = process.env.HUGGINGFACE_API_TOKEN;
+if (!HUGGINGFACE_API_TOKEN) {
   console.warn(
-    "⚠️ GEMINI_API_KEY not set. Summarization will fail without it."
+    "⚠️ HUGGINGFACE_API_TOKEN not set. Summarization will fail without it."
   );
 }
 
-const genAI = new GoogleGenerativeAI(geminiKey);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-// Helper: summarize text using Gemini
-async function summarizeText(text) {
-  if (!geminiKey) {
-    return "Summary unavailable (Gemini key missing).";
-  }
+// ✅ Summarize text using Hugging Face model
+export async function summarizeText(text) {
   try {
-    const prompt = `Summarize the following financial news article in 2-3 short, neutral sentences suitable for a dashboard card UI:\n\n${text}`;
+    // Send only the raw article text
+    const prompt = `${text}`;
 
-    const result = await model.generateContent(prompt);
-    const summary = result.response.text().trim();
+    const response = await axios.post(
+      "https://api-inference.huggingface.co/models/philschmid/bart-large-cnn-samsum",
+      {
+        inputs: prompt,
+        parameters: {
+          min_length: 50,
+          max_length: 200,
+          clean_up_tokenization_spaces: true,
+        },
+      },
+      {
+        headers: { Authorization: `Bearer ${HUGGINGFACE_API_TOKEN}` },
+        timeout: 60000,
+      }
+    );
 
-    return summary || "No summary generated.";
+    let summary = response.data[0]?.summary_text || "No summary generated.";
+
+    // --- Clean up weird characters & HTML entities ---
+    summary = summary
+      .replace(/&nbsp;/gi, " ") // replace non-breaking spaces
+      .replace(/&amp;/gi, "&") // replace &amp;
+      .replace(/Â/g, "") // remove stray Â
+      .replace(/\s+/g, " ") // collapse multiple spaces
+      .replace(/[^\x00-\x7F]+/g, "") // remove non-ASCII weird chars
+      .trim();
+
+    return summary;
   } catch (err) {
-    console.error("Gemini summarization error:", err.message || err);
+    console.error("Hugging Face summarization failed:", err.message || err);
     return "Summary error.";
   }
 }
 
-// HTTP function to fetch and summarize RSS feeds
-exports.fetchAndSummarize = functions.https.onRequest(async (req, res) => {
+// ✅ HTTP function to fetch and summarize RSS feeds progressively
+export const fetchAndSummarize = functions.https.onRequest(async (req, res) => {
   return cors(req, res, async () => {
     try {
       const feeds = [
-        "https://www.reutersagency.com/feed/?best-topics=business-finance&post_type=best",
-        "https://feeds.finance.yahoo.com/rss/2.0/headline?s=yhoo&region=US&lang=en-US",
+        "https://www.cnbc.com/id/10001147/device/rss/rss.html",
+        "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
       ];
 
       const allItems = [];
@@ -71,17 +90,16 @@ exports.fetchAndSummarize = functions.https.onRequest(async (req, res) => {
         }
       }
 
-      // Deduplicate articles by link
+      // Remove duplicates
       const unique = new Map();
       allItems.forEach((it) => {
         if (!unique.has(it.link)) unique.set(it.link, it);
       });
 
-      const batch = db.batch();
       let ingested = 0;
 
+      // ✅ Process each article sequentially so Firestore updates immediately
       for (const item of unique.values()) {
-        // Skip if already in Firestore
         const q = await db
           .collection("articles")
           .where("link", "==", item.link)
@@ -89,12 +107,10 @@ exports.fetchAndSummarize = functions.https.onRequest(async (req, res) => {
           .get();
         if (!q.empty) continue;
 
-        // Summarize content using Gemini
-        const textToSummarize = item.content || item.title || "";
-        const summary = await summarizeText(textToSummarize);
+        const summary = await summarizeText(item.content || item.title || "");
 
-        const docRef = db.collection("articles").doc();
-        const docData = {
+        // ✅ Save immediately (no batch delay)
+        await db.collection("articles").add({
           title: item.title || "Untitled",
           link: item.link || null,
           summary,
@@ -103,13 +119,10 @@ exports.fetchAndSummarize = functions.https.onRequest(async (req, res) => {
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
           tags: [],
           importance: "normal",
-        };
+        });
 
-        batch.set(docRef, docData);
         ingested++;
       }
-
-      if (ingested > 0) await batch.commit();
 
       res.json({ success: true, ingested });
     } catch (err) {

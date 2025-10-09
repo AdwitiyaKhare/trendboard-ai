@@ -1,0 +1,695 @@
+extend type Article {
+  """
+  ✨ List `SavedArticle` objects in a one-to-many relationship (where `SavedArticle`.`article` is this object).
+  """
+  savedArticles_on_article(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: SavedArticle_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [SavedArticle_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: SavedArticle_Having
+  ): [SavedArticle!]! @fdc_generated(from: "SavedArticle.article", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Article", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Article` table.
+  """
+  _count: Int! @fdc_generated(from: "Article.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `author` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  author_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.author", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `fetchedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  fetchedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.fetchedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `fullContent` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  fullContent_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.fullContent", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `imageUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  imageUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.imageUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `publishedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  publishedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.publishedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `sourceId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  sourceId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.sourceId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `summary` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  summary_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.summary", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `title` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  title_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.title", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Article` table where the `url` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  url_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Article.url", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `fetchedAt` field in the `Article` table.
+  """
+  fetchedAt_min: Timestamp @fdc_generated(from: "Article.fetchedAt", purpose: QUERY_MIN)
+  """
+  ✨ Minimum of the `publishedAt` field in the `Article` table.
+  """
+  publishedAt_min: Timestamp @fdc_generated(from: "Article.publishedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `fetchedAt` field in the `Article` table.
+  """
+  fetchedAt_max: Timestamp @fdc_generated(from: "Article.fetchedAt", purpose: QUERY_MAX)
+  """
+  ✨ Maximum of the `publishedAt` field in the `Article` table.
+  """
+  publishedAt_max: Timestamp @fdc_generated(from: "Article.publishedAt", purpose: QUERY_MAX)
+}
+extend type ArticleCategory {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "ArticleCategory", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `ArticleCategory` table.
+  """
+  _count: Int! @fdc_generated(from: "ArticleCategory.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ArticleCategory` table where the `assignedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  assignedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ArticleCategory.assignedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ArticleCategory` table where the `categoryId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  categoryId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ArticleCategory.categoryId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `ArticleCategory` table where the `savedArticleId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  savedArticleId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "ArticleCategory.savedArticleId", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `assignedAt` field in the `ArticleCategory` table.
+  """
+  assignedAt_min: Timestamp @fdc_generated(from: "ArticleCategory.assignedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `assignedAt` field in the `ArticleCategory` table.
+  """
+  assignedAt_max: Timestamp @fdc_generated(from: "ArticleCategory.assignedAt", purpose: QUERY_MAX)
+}
+extend type Category {
+  """
+  ✨ List `ArticleCategory` objects in a one-to-many relationship (where `ArticleCategory`.`category` is this object).
+  """
+  articleCategories_on_category(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ArticleCategory_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ArticleCategory_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ArticleCategory_Having
+  ): [ArticleCategory!]! @fdc_generated(from: "ArticleCategory.category", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `SavedArticle` objects using `ArticleCategory` as the join table (a `ArticleCategory` object exists where its `category` is this and its `savedArticle` is that).
+  """
+  savedArticles_via_ArticleCategory(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ArticleCategory_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ArticleCategory_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ArticleCategory_Having
+  ): [SavedArticle!]! @fdc_generated(from: "ArticleCategory", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Category", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Category` table.
+  """
+  _count: Int! @fdc_generated(from: "Category.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Category` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Category.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Category` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Category.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Category` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Category.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Category` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Category.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Category` table where the `userId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  userId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Category.userId", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `Category` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "Category.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `Category` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "Category.createdAt", purpose: QUERY_MAX)
+}
+extend type NewsSource {
+  """
+  ✨ List `Article` objects in a one-to-many relationship (where `Article`.`source` is this object).
+  """
+  articles_on_source(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Article_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Article_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Article_Having
+  ): [Article!]! @fdc_generated(from: "Article.source", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "NewsSource", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `NewsSource` table.
+  """
+  _count: Int! @fdc_generated(from: "NewsSource.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `NewsSource` table where the `description` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  description_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "NewsSource.description", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `NewsSource` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "NewsSource.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `NewsSource` table where the `logoUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  logoUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "NewsSource.logoUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `NewsSource` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "NewsSource.name", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `NewsSource` table where the `rssFeedUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  rssFeedUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "NewsSource.rssFeedUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `NewsSource` table where the `url` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  url_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "NewsSource.url", purpose: QUERY_COUNT)
+}
+extend type SavedArticle {
+  """
+  ✨ List `ArticleCategory` objects in a one-to-many relationship (where `ArticleCategory`.`savedArticle` is this object).
+  """
+  articleCategories_on_savedArticle(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ArticleCategory_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ArticleCategory_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ArticleCategory_Having
+  ): [ArticleCategory!]! @fdc_generated(from: "ArticleCategory.savedArticle", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Category` objects using `ArticleCategory` as the join table (a `ArticleCategory` object exists where its `savedArticle` is this and its `category` is that).
+  """
+  categories_via_ArticleCategory(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: ArticleCategory_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [ArticleCategory_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: ArticleCategory_Having
+  ): [Category!]! @fdc_generated(from: "ArticleCategory", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "SavedArticle", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `SavedArticle` table.
+  """
+  _count: Int! @fdc_generated(from: "SavedArticle.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `SavedArticle` table where the `articleId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  articleId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "SavedArticle.articleId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `SavedArticle` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "SavedArticle.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `SavedArticle` table where the `isImportant` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  isImportant_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "SavedArticle.isImportant", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `SavedArticle` table where the `notes` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  notes_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "SavedArticle.notes", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `SavedArticle` table where the `savedAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  savedAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "SavedArticle.savedAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `SavedArticle` table where the `userId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  userId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "SavedArticle.userId", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `savedAt` field in the `SavedArticle` table.
+  """
+  savedAt_min: Timestamp @fdc_generated(from: "SavedArticle.savedAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `savedAt` field in the `SavedArticle` table.
+  """
+  savedAt_max: Timestamp @fdc_generated(from: "SavedArticle.savedAt", purpose: QUERY_MAX)
+}
+extend type User {
+  """
+  ✨ List `Category` objects in a one-to-many relationship (where `Category`.`user` is this object).
+  """
+  categories_on_user(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Category_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Category_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Category_Having
+  ): [Category!]! @fdc_generated(from: "Category.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `SavedArticle` objects in a one-to-many relationship (where `SavedArticle`.`user` is this object).
+  """
+  savedArticles_on_user(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: SavedArticle_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [SavedArticle_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: SavedArticle_Having
+  ): [SavedArticle!]! @fdc_generated(from: "SavedArticle.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "User", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `User` table.
+  """
+  _count: Int! @fdc_generated(from: "User.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `displayName` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  displayName_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.displayName", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `email` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  email_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.email", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `photoUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  photoUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.photoUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `User` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "User.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `User` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "User.createdAt", purpose: QUERY_MAX)
+}

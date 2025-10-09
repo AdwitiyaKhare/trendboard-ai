@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "trendboard-ai"
-  }
+    "default": "trendboard-ai",
+    "practice": "trendboard-ai"
+  },
+  "targets": {},
+  "etags": {}
 }

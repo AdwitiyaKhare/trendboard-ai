@@ -9,6 +9,8 @@ functions/.env
 node_modules/
 functions/node_modules/
 frontend/node_modules/
+deployment/backend/node_modules
+deployment/frontend/node_modules
 
 # -------------------------
 # Build / Dist files
@@ -20,8 +22,11 @@ frontend/build/
 # -------------------------
 # Environment files
 # -------------------------
+.env
 frontend/.env
 functions/.env
+deployment/backend/.env
+deployment/frontend/.env
 
 # -------------------------
 # Vite / Frontend
@@ -48,3 +53,5 @@ Thumbs.db
 # -------------------------
 .firebaserc.local
 firebase-debug
+
+.gitignore
