@@ -77,10 +77,12 @@ async function fetchFeed(url) {
   try {
     const response = await axios.get(url, {
       headers: { "User-Agent": "Mozilla/5.0" },
-      timeout: 15000,
-      responseType: "text",
+      timeout: 20000,
+      responseType: "arraybuffer",
+      decompress: true,
     });
-    const feed = await parser.parseString(response.data);
+    const xml = response.data.toString("utf-8");
+    const feed = await parser.parseString(xml);
     return feed;
   } catch (err) {
     console.error("Failed to fetch feed:", url, err.message);
