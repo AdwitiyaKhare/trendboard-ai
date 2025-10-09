@@ -47,6 +47,8 @@ if (!HUGGINGFACE_API_TOKEN) {
 function sanitizeText(text) {
   if (!text) return "";
   return text
+    .replace(/<!\[CDATA\[.*?\]\]>/g, "")
+    .replace(/<[^>]*>/g, "")
     .replace(/&nbsp;/gi, " ")
     .replace(/&amp;/gi, "&")
     .replace(/Â/g, "")
