@@ -10,7 +10,12 @@ const app = express();
 
 // ✅ Middlewares
 app.use(express.json());
-app.use(cors({ origin: true }));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 
 const parser = new Parser();
 
