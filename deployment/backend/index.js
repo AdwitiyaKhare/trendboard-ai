@@ -41,6 +41,18 @@ if (!HUGGINGFACE_API_TOKEN) {
   console.warn("⚠️ HUGGINGFACE_API_TOKEN not set. Summarization may fail.");
 }
 
+// 🧹 Sanitize text for Firestore
+function sanitizeText(text) {
+  if (!text) return "";
+  return text
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/Â/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/[^\x00-\x7F]+/g, "")
+    .trim();
+}
+
 // 📝 Summarize text using Hugging Face API
 async function summarizeText(text) {
   try {
@@ -61,13 +73,7 @@ async function summarizeText(text) {
     );
 
     let summary = response.data[0]?.summary_text || "No summary generated.";
-    return summary
-      .replace(/&nbsp;/gi, " ")
-      .replace(/&amp;/gi, "&")
-      .replace(/Â/g, "")
-      .replace(/\s+/g, " ")
-      .replace(/[^\x00-\x7F]+/g, "")
-      .trim();
+    return sanitizeText(summary);
   } catch (err) {
     console.error("❌ Summarization failed:", err.message);
     return "Summary error.";
@@ -90,14 +96,14 @@ app.post("/fetch-and-summarize", async (req, res) => {
         feed.items.forEach((item) => {
           allItems.push({
             source: feed.title || url,
-            title: item.title,
+            title: sanitizeText(item.title),
             link: item.link,
-            content: (
-              item.contentSnippet ||
-              item.content ||
-              item.summary ||
-              ""
-            ).slice(0, 3000),
+            content: sanitizeText(
+              (item.contentSnippet || item.content || item.summary || "").slice(
+                0,
+                3000
+              )
+            ),
             pubDate: item.pubDate ? new Date(item.pubDate) : new Date(),
           });
         });
@@ -115,27 +121,35 @@ app.post("/fetch-and-summarize", async (req, res) => {
     let ingested = 0;
 
     for (const item of unique.values()) {
-      const existing = await db
-        .collection("articles")
-        .where("link", "==", item.link)
-        .limit(1)
-        .get();
-      if (!existing.empty) continue;
+      try {
+        const existing = await db
+          .collection("articles")
+          .where("link", "==", item.link)
+          .limit(1)
+          .get();
+        if (!existing.empty) continue;
 
-      const summary = await summarizeText(item.content || item.title || "");
+        const summary = await summarizeText(item.content || item.title || "");
 
-      await db.collection("articles").add({
-        title: item.title || "Untitled",
-        link: item.link || null,
-        summary,
-        source: item.source,
-        publishedAt: item.pubDate,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        tags: [],
-        importance: "normal",
-      });
+        await db.collection("articles").add({
+          title: item.title || "Untitled",
+          link: item.link || null,
+          summary,
+          source: item.source,
+          publishedAt: item.pubDate instanceof Date ? item.pubDate : new Date(),
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+          tags: [],
+          importance: "normal",
+        });
 
-      ingested++;
+        ingested++;
+      } catch (err) {
+        console.warn(
+          "⚠️ Skipping article due to error:",
+          item.link,
+          err.message
+        );
+      }
     }
 
     res.json({ success: true, ingested });
@@ -153,10 +167,26 @@ app.get("/articles", async (req, res) => {
       .orderBy("publishedAt", "desc")
       .get();
 
-    const articles = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const articles = [];
+    snapshot.docs.forEach((doc) => {
+      try {
+        const data = doc.data();
+        articles.push({
+          id: doc.id,
+          ...data,
+          publishedAt:
+            data.publishedAt?.toDate?.() instanceof Date
+              ? data.publishedAt.toDate().toISOString()
+              : new Date().toISOString(),
+          createdAt:
+            data.createdAt?.toDate?.() instanceof Date
+              ? data.createdAt.toDate().toISOString()
+              : new Date().toISOString(),
+        });
+      } catch (err) {
+        console.warn("⚠️ Skipping invalid doc:", doc.id, err.message);
+      }
+    });
 
     res.json(articles);
   } catch (err) {
