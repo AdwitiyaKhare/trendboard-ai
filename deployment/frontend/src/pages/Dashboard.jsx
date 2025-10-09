@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import ArticleCard from "../components/ArticleCard";
 import { fetchArticles, triggerIngest } from "../services/api";
 import {

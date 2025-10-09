@@ -1,7 +1,37 @@
+import { useEffect, useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Header from "./components/Header";
+import LoadingScreen from "./components/LoadingScreen";
 
 export default function App() {
+  const [backendReady, setBackendReady] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const checkBackend = async () => {
+      try {
+        // Try fetching a small endpoint from backend
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/articles`);
+        if (!isMounted) return;
+
+        if (res.ok) {
+          setBackendReady(true); // backend responded
+        } else {
+          setTimeout(checkBackend, 1000); // retry if not ok
+        }
+      } catch (err) {
+        setTimeout(checkBackend, 1000); // retry if fetch failed
+      }
+    };
+
+    checkBackend();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <div
       style={{
@@ -15,7 +45,7 @@ export default function App() {
     >
       <Header />
       <main style={{ flex: 1, padding: 16 }}>
-        <Dashboard />
+        {!backendReady ? <LoadingScreen /> : <Dashboard />}
       </main>
 
       {/* Gradient animation keyframes */}
