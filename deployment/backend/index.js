@@ -38,7 +38,9 @@ const db = admin.firestore();
 // 🧠 Hugging Face API Token
 const HUGGINGFACE_API_TOKEN = process.env.HUGGINGFACE_API_TOKEN;
 if (!HUGGINGFACE_API_TOKEN) {
-  console.warn("⚠️ HUGGINGFACE_API_TOKEN not set. Summarization may fail.");
+  console.warn(
+    "⚠️ HUGGINGFACE_API_TOKEN not set. Summarization may fail."
+  );
 }
 
 // 🧹 Sanitize text for Firestore
@@ -136,7 +138,8 @@ app.post("/fetch-and-summarize", async (req, res) => {
           link: item.link || null,
           summary,
           source: item.source,
-          publishedAt: item.pubDate instanceof Date ? item.pubDate : new Date(),
+          publishedAt:
+            item.pubDate instanceof Date ? item.pubDate : new Date(),
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
           tags: [],
           importance: "normal",
@@ -144,11 +147,7 @@ app.post("/fetch-and-summarize", async (req, res) => {
 
         ingested++;
       } catch (err) {
-        console.warn(
-          "⚠️ Skipping article due to error:",
-          item.link,
-          err.message
-        );
+        console.warn("⚠️ Skipping article due to error:", item.link, err.message);
       }
     }
 
@@ -196,7 +195,9 @@ app.get("/articles", async (req, res) => {
 });
 
 // ❤️ Health Check
-app.get("/", (req, res) => res.send("✅ Backend is running successfully 🚀"));
+app.get("/", (req, res) =>
+  res.send("✅ Backend is running successfully 🚀")
+);
 
 // 🚀 Start Server
 const PORT = process.env.PORT || 5000;
