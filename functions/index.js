@@ -14,7 +14,7 @@ const parser = new Parser();
 const HUGGINGFACE_API_TOKEN = process.env.HUGGINGFACE_API_TOKEN;
 if (!HUGGINGFACE_API_TOKEN) {
   console.warn(
-    "⚠️ HUGGINGFACE_API_TOKEN not set. Summarization will fail without it."
+    "HUGGINGFACE_API_TOKEN not set. Summarization will fail without it."
   );
 }
 

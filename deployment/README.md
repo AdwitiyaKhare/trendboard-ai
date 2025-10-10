@@ -1,133 +1,132 @@
 # TrendBoard
 
-**TrendBoard** is a full-stack, AI-powered news dashboard that automatically **fetches, summarizes, and visualizes trending articles** from multiple sources in real time.  
-It integrates **Firebase**, **Hugging Face summarization**, and a modern **React + Tailwind** frontend for a clean, interactive experience.
+**TrendBoard** is a full-stack AI-powered dashboard that aggregates the latest financial and market news from trusted RSS feeds, summarizes them using Hugging Face models, and presents them in an elegant and interactive web interface.  
+
+Built with **React + TailwindCSS (frontend)**, **Node.js + Express (backend)**, and **Firebase (Firestore)** for persistent storage.  
+
+While the backend loads, users can enjoy a **mini Snake game** on the loading screen — a creative touch to keep engagement high!
 
 ---
 
 ## Features
 
-- Automatic RSS ingestion using Firebase Cloud Functions
-- AI summarization powered by Hugging Face (BART-based model)
-- Search and sorting for articles by title, date, or content
-- Modern responsive UI built with Tailwind CSS and Framer Motion
-- Cloud Firestore integration for live updates
-- Soft gradient visuals and light animation effects
+### AI Summarization
+- Fetches latest news from multiple RSS feeds (CNBC, WSJ, etc.)
+- Uses Hugging Face’s `bart-large-cnn-samsum` model for automatic summarization.
+- Removes noise, formatting artifacts, and redundant information.
+
+### Dashboard
+- Clean and responsive UI built with **React + TailwindCSS**.
+- Displays summarized articles with title, source, publish date, tags, and direct link.
+- Integrated **search**, **sorting**, and **tag-based analytics** (visualized via Recharts).
+- Dynamic “Fetch & Summarize” button triggers live ingestion of new content.
+
+### Loading Screen Game
+- Interactive **Snake Game** while backend initializes.
+- Tracks high scores locally using `localStorage`.
+- Fully mobile-friendly with touch controls.
+
+### Tech Stack-
+| Layer     | Technologies                                           |
+|-----------|--------------------------------------------------------|
+| Frontend  | React, Vite, TailwindCSS, Framer Motion, Recharts      |
+| Backend   | Node.js, Express, Firebase Admin SDK, Hugging Face API |
+| Database  | Google Firestore                                       |
+| APIs      | CNBC RSS, WSJ RSS, Hugging Face Inference API          |
+| Hosting   | Vercel (Frontend) + Render / Firebase Hosting (Backend)|
 
 ---
 
-## Project Structure
-
-```
-trendboard/
+## Folder Structure
+trendboard/deployment
 │
 ├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ArticleCard.jsx       # Displays summarized articles
-│   │   │   └── Header.jsx            # Top navigation bar
-│   │   ├── pages/
-│   │   │   └── Dashboard.jsx         # Main dashboard UI
-│   │   ├── services/
-│   │   │   ├── api.js                # Cloud Function API helpers
-│   │   │   └── firebase.js           # Firebase config and Firestore setup
-│   │   ├── App.jsx                   # Root app layout
-│   │   ├── main.jsx                  # Entry point
-│   │   └── App.css                   # Global Tailwind + styles
-│   └── package.json
+│ ├── src/
+│ │ ├── components/
+│ │ │ ├── Header.jsx
+│ │ │ ├── ArticleCard.jsx
+│ │ │ ├── LoadingScreen.jsx
+│ │ │ └── SnakeGame.jsx
+│ │ ├── pages/
+│ │ │ └── Dashboard.jsx
+│ │ ├── services/
+│ │ │ ├── api.js
+│ │ │ └── firebase.js
+│ │ ├── App.jsx
+│ │ ├── App.css
+│ │ └── main.jsx
+│ └── vite.config.js
 │
-├── functions/
-│   └── index.js                      # Firebase Cloud Function for fetching & summarizing articles
+├── backend/
+│ └── index.js
 │
-└── deployment/                       # Contains deployed version (see its README for details)
-```
+├── .env.example
+└── README.md
+
 
 ---
 
-## ⚙️ Setup & Installation
+## Environment Variables
 
-### 1. Clone the repository
+Create `.env` files in both **frontend** and **backend** directories.
 
-```bash
-git clone https://github.com/AdwitiyaKhare/trendboard.git
+### Backend `.env`
+
+PORT=5000
+FRONTEND_URL=http://localhost:5173
+
+FIREBASE_PROJECT_ID=your_firebase_project_id
+FIREBASE_CLIENT_EMAIL=your_firebase_admin_sdk_email
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_KEY\n-----END PRIVATE KEY-----"
+
+HUGGINGFACE_API_TOKEN=your_huggingface_token
+
+### Frontend .env
+VITE_BACKEND_URL=http://localhost:5000
+
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_sender_id
+VITE_FIREBASE_APP_ID=your_firebase_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_firebase_measurement_id
+
+## Setup Instructions
+
+### Clone the repository
+git clone https://github.com/yourusername/trendboard.git
 cd trendboard
-```
 
-### 2. Set up the frontend
+### Install dependencies
+Backend
+cd backend
+npm install
+npm run start
 
-```bash
+Frontend
 cd frontend
 npm install
-```
-
-### 3. Set up environment variables
-
-Create a `.env` file inside the `frontend/` folder:
-
-```env
-VITE_FIREBASE_API_KEY=your_key
-VITE_FIREBASE_AUTH_DOMAIN=your_domain
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_bucket
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
-VITE_FUNCTION_URL=https://your-cloud-function-url
-```
-
-### 4. Run locally
-
-```bash
 npm run dev
-```
 
-Visit **[http://localhost:5173](http://localhost:5173)** to view the app.
+Deployment
 
----
+Frontend: Deployed on Vercel - https://trendboard-ai.vercel.app/
+Backend: Deployed on Render - https://trendboard-ai.onrender.com
 
-## Backend: Firebase Cloud Function
+Set environment variables in the deployment dashboard for both.
 
-Located in the `/functions` directory.  
-It:
+## Visualization Preview
 
-- Fetches news from multiple RSS feeds (e.g., CNBC, WSJ)
-- Summarizes them using **Hugging Face BART-Large-CNN model**
-- Stores results in Firestore in real time
+### Dashboard
 
-### Environment variable (required)
+Displays live summarized articles
+Trending topics shown using bar charts
 
-```
-HUGGINGFACE_API_TOKEN=your_token_here
-```
+### Snake Game
 
-To deploy the function:
-
-```bash
-firebase deploy --only functions
-```
-
----
-
-## How It Works
-
-1. Click **Fetch & Summarize** on the dashboard.
-2. The Firebase Function fetches new articles → summarizes via Hugging Face → saves to Firestore.
-3. The React frontend listens to Firestore for new entries and updates instantly.
-4. Trending topics are visualized based on tag frequency.
-
----
-
-## Tech Stack
-
-| Layer                | Technologies                                                 |
-| -------------------- | ------------------------------------------------------------ |
-| **Frontend**         | React, Tailwind CSS, Framer Motion, Recharts                 |
-| **Backend**          | Firebase Cloud Functions, Firestore                          |
-| **AI Summarization** | Hugging Face BART model                                      |
-| **APIs**             | RSS Parser, Axios, Node Fetch                                |
-| **Deployment**       | Render/Vercel Hosting _(see /deployment folder)              |
-
----
+Appears during backend initialization
+Simple, responsive, and fun mini-game with persistent high scores
 
 ## Author
 
@@ -143,3 +142,11 @@ firebase deploy --only functions
 ## License
 
 This project is licensed under the **MIT License** — free to use and modify with credit.
+
+## Acknowledgements
+
+Hugging Face Transformers API
+Firebase Firestore
+CNBC RSS Feeds
+Wall Street Journal RSS
+Framer Motion

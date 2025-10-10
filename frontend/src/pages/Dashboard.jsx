@@ -69,7 +69,7 @@ export default function Dashboard() {
   async function handleIngest() {
     const fnUrl = import.meta.env.VITE_FUNCTION_URL;
     if (!fnUrl) {
-      console.warn("Function URL missing in env."); // silently log
+      console.warn("Function URL missing in env.");
       return;
     }
 
