@@ -38,6 +38,7 @@ While the backend loads, users can enjoy a **mini Snake game** on the loading sc
 ---
 
 ## Folder Structure
+```
 trendboard/deployment
 │
 ├── frontend/
@@ -62,7 +63,7 @@ trendboard/deployment
 │
 ├── .env.example
 └── README.md
-
+```
 
 ---
 
